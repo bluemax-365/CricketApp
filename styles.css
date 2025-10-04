@@ -25,6 +25,16 @@ header {
     color: white;
     padding: 25px;
     text-align: center;
+    position: relative;
+}
+
+.version {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    font-size: 6pt;
+    opacity: 0.8;
+    font-weight: 400;
 }
 
 header h1 {
