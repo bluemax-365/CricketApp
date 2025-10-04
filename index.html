@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cricket calculator for 50 over matches">
+    <meta name="theme-color" content="#2a5298">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Cricket Calc">
+    <title>Cricket Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏏 Cricket Calculator</h1>
+        </header>
+
+        <div class="calculator-tabs">
+            <button class="tab-btn active" onclick="showTab('runRate')">50 - 1ST</button>
+            <button class="tab-btn" onclick="showTab('strikeRate')">Appendix B</button>
+        </div>
+
+        <!-- Run Rate Calculator -->
+        <div id="runRate" class="calculator-section active">
+            <h4>Calculation sheet for use when a delay or interruptions occur in the first innings</h4>
+            
+            <div class="calc-card">
+                <h3>Match Schedule Information</h3>
+                
+                <div class="input-group">
+                    <label for="net-time">Net playing time available (A):</label>
+                    <input type="number" id="net-time" placeholder="420" value="420">
+                </div>
+                
+                <div class="input-group">
+                    <label for="game-started">Time game started:</label>
+                    <input type="time" id="game-started" placeholder="11:00">
+                </div>
+                
+                <div class="input-group">
+                    <label for="came-off">Time came off:</label>
+                    <input type="time" id="came-off" placeholder="11:00">
+                </div>
+                
+                <div class="input-group">
+                    <label for="came-back-on">Time came back on:</label>
+                    <input type="time" id="came-back-on" placeholder="11:00">
+                </div>
+                
+                <div class="input-group">
+                    <label for="extra-time">Extra time available (in minutes) (D):</label>
+                    <input type="number" id="extra-time" placeholder="0">
+                </div>
+                
+                <div class="input-group">
+                    <label for="interval-time">Time made up from interval (in minutes) (E):</label>
+                    <input type="number" id="interval-time" placeholder="0">
+                </div>
+                
+                <div class="input-group">
+                    <label for="new-interval-length">New Length of interval (M):</label>
+                    <input type="number" id="new-interval-length" placeholder="0">
+                </div>
+                
+                <button onclick="calculate50First()">Calculate</button>
+            </div>
+        </div>
+
+        <!-- Results Overlay -->
+        <div id="results-overlay" class="overlay">
+            <div class="overlay-content">
+                <h2>Calculation Results</h2>
+                <div class="overlay-results">
+                    <div class="result" id="time-lost-result"></div>
+                    <div class="result" id="effective-time-lost-result"></div>
+                    <div class="result" id="remaining-time-result"></div>
+                    <div class="result" id="divided-time-result"></div>
+                    <div class="result" id="max-overs-result"></div>
+                </div>
+                <div class="overlay-buttons">
+                    <button onclick="hideOverlay()">Hide Results</button>
+                    <button onclick="resetApp()" class="reset-btn">Reset App</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strike Rate Calculator -->
+        <div id="strikeRate" class="calculator-section">
+            <h2>Appendix B</h2>
+            
+            <div class="calc-card">
+                <h3>Content Coming Soon</h3>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Register service worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registered successfully:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
