@@ -89,6 +89,23 @@ function calculate50First() {
     maxBowlerOversDiv.textContent = `Maximum overs per bowler: ${maxBowlerOvers} overs`;
     maxBowlerOversDiv.classList.remove('error');
     
+    // Calculate Power Plays based on max overs per team
+    const powerplayData = getPowerplayData(maxOvers);
+    const powerplayDiv = document.getElementById('powerplay-result');
+    
+    if (powerplayData) {
+        powerplayDiv.innerHTML = `
+            <strong>Power Play Restrictions:</strong><br>
+            Power Play 1: ${powerplayData.powerplay1} overs<br>
+            Power Play 2: ${powerplayData.powerplay2} overs<br>
+            Power Play 3: ${powerplayData.powerplay3} overs
+        `;
+        powerplayDiv.classList.remove('error');
+    } else {
+        powerplayDiv.textContent = `No power play data available for ${maxOvers} overs`;
+        powerplayDiv.classList.add('error');
+    }
+    
     // Show the results overlay
     showOverlay();
 }
@@ -121,6 +138,7 @@ function resetApp() {
     document.getElementById('divided-time-result').textContent = '';
     document.getElementById('max-overs-result').textContent = '';
     document.getElementById('max-bowler-overs-result').textContent = '';
+    document.getElementById('powerplay-result').textContent = '';
     
     // Hide overlay
     hideOverlay();
