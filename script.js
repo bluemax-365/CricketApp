@@ -83,6 +83,12 @@ function calculate50First() {
     maxOversDiv.textContent = `Max overs per team (I): ${maxOvers} overs`;
     maxOversDiv.classList.remove('error');
     
+    // Calculate Maximum overs per bowler = I / 5 (round up)
+    const maxBowlerOvers = Math.ceil(maxOvers / 5);
+    const maxBowlerOversDiv = document.getElementById('max-bowler-overs-result');
+    maxBowlerOversDiv.textContent = `Maximum overs per bowler: ${maxBowlerOvers} overs`;
+    maxBowlerOversDiv.classList.remove('error');
+    
     // Show the results overlay
     showOverlay();
 }
@@ -114,6 +120,7 @@ function resetApp() {
     document.getElementById('remaining-time-result').textContent = '';
     document.getElementById('divided-time-result').textContent = '';
     document.getElementById('max-overs-result').textContent = '';
+    document.getElementById('max-bowler-overs-result').textContent = '';
     
     // Hide overlay
     hideOverlay();
